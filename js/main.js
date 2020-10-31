@@ -77,14 +77,14 @@ const createUser = function () {
 
 // Task 2
 let map = document.querySelector('.map');
-map.classList.remove('map--faded');
+// map.classList.remove('map--faded');
 
-// Task 3
+// User creation
 for (let i = 0; i < USERS_AMOUNT; i++) {
   users.push(createUser());
 }
 
-// Task 4
+// Insert random pins 
 let mapPins = document.querySelector('.map__pins');
 let pinTemplate = document.querySelector('#pin').content;
 let newPinTemplate = pinTemplate.querySelector('.map__pin');
@@ -106,4 +106,87 @@ const insertPins = function () {
   return fragment;
 };
 
-mapPins.append(insertPins());
+// mapPins.append(insertPins());
+
+// 4.10
+
+let intercativeElements = document.querySelector('.ad-form');
+let mapFilters = document.querySelector('.map__filters');
+let intercativeForm = intercativeElements.querySelectorAll('fieldset');
+let mapForm = mapFilters.querySelectorAll('fieldset');
+
+let activateElemets = function (bool) {
+  if (bool) {
+    for (let i = 0; i < intercativeForm.length; i++) {
+      intercativeForm[i].setAttribute('disabled', 'true');
+    };
+    for (let i = 0; i < mapForm.length; i++) {
+      mapForm[i].setAttribute('disabled', 'true');
+    }
+  } else {
+    for (let i = 0; i < intercativeForm.length; i++) {
+      intercativeForm[i].removeAttribute('disabled');
+    };
+    for (let i = 0; i < mapForm.length; i++) {
+      mapForm[i].removeAttribute('disabled');
+    }
+  }
+};
+
+activateElemets(true);
+
+// Активация страницы через нажатие левой кнопкой мыши 
+let pageActivation = document.querySelector('.map__pin--main');
+
+pageActivation.addEventListener('mousedown', function(evt) {
+  if (evt.buttons === 1) {
+    activateElemets(false);
+    map.classList.remove('map--faded');
+    mapPins.append(insertPins());
+    addAddress();
+  }
+});
+
+// Активация страницы через Enter 
+pageActivation.addEventListener('keydown', function(evt){
+  if (evt.key === 'Enter') {
+    activateElemets(false);
+    map.classList.remove('map--faded');
+    mapPins.append(insertPins());
+    addAddress(POINT_WIDTH_END, POINT_HEIGHT_END);
+  }
+});
+
+// Размеры метки
+const POINT_WIDTH = 40;
+const POINT_HEIGHT = 44;
+const POINT_WIDTH_END = 10;
+const POINT_HEIGHT_END = 22;
+
+// Добавление адреса метки
+let pointPosition = document.querySelector('.map__pin');
+let onAddress = document.querySelector('#address');
+
+let addAddress = function (pWidthEnd, pHeightEnd) {
+  let x = Number(pointPosition.style.left.replace(/px/g,''));
+  let y = Number(pointPosition.style.top.replace(/px/g,''));
+  onAddress.value = Math.floor(x + (POINT_WIDTH + pWidthEnd / 2)) + ', ' + Math.floor(y + POINT_HEIGHT + pHeightEnd);
+};
+addAddress(0, 0);
+
+// Связности количества гостей и количества комнат
+let housingGuests = document.querySelector('#housing-guests');
+let housingRooms = document.querySelector('#housing-rooms');
+console.log(housingGuests);
+console.log(housingRooms);
+
+housingRooms.addEventListener('change', function() {
+  let roomsAmount = housingRooms[housingRooms.selectedIndex].value;
+  let guestsAmount = housingGuests[housingGuests.selectedIndex].value;
+  console.log(roomsAmount);
+  console.log(guestsAmount);
+  if (roomsAmount < guestsAmount) {
+    housingRooms.setCustomValidity('Столько гостей здесь не поместится');
+  }
+});
+
