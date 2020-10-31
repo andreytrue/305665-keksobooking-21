@@ -164,25 +164,24 @@ const POINT_WIDTH_END = 10;
 const POINT_HEIGHT_END = 22;
 
 // Добавление адреса метки
-let pointPosition = document.querySelector('.map__pin');
-let onAddress = document.querySelector('#address');
+const pointPosition = document.querySelector('.map__pin');
+const onAddress = document.querySelector('#address');
 
-let addAddress = function (pWidthEnd, pHeightEnd) {
-  let x = Number(pointPosition.style.left.replace(/px/g, ''));
-  let y = Number(pointPosition.style.top.replace(/px/g, ''));
+const addAddress = function (pWidthEnd, pHeightEnd) {
+  const x = Number(pointPosition.style.left.replace(/px/g, ''));
+  const y = Number(pointPosition.style.top.replace(/px/g, ''));
   onAddress.value = Math.floor(x + (POINT_WIDTH + pWidthEnd / 2)) + ', ' + Math.floor(y + POINT_HEIGHT + pHeightEnd);
 };
 addAddress(0, 0);
 
 // Связности количества гостей и количества комнат
-let housingGuests = document.querySelector('#housing-guests');
-let housingRooms = document.querySelector('#housing-rooms');
+const housingGuests = document.querySelector('#housing-guests');
+const housingRooms = document.querySelector('#housing-rooms');
 
 housingRooms.addEventListener('change', function () {
-  let roomsAmount = housingRooms[housingRooms.selectedIndex].value;
-  let guestsAmount = housingGuests[housingGuests.selectedIndex].value;
+  const roomsAmount = housingRooms[housingRooms.selectedIndex].value;
+  const guestsAmount = housingGuests[housingGuests.selectedIndex].value;
   if (roomsAmount < guestsAmount) {
     housingRooms.setCustomValidity('Столько гостей здесь не поместится');
   }
 });
-
