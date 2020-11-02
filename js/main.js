@@ -76,7 +76,7 @@ const createUser = function () {
 };
 
 // Task 2
-let map = document.querySelector('.map');
+const map = document.querySelector('.map');
 // map.classList.remove('map--faded');
 
 // User creation
@@ -136,7 +136,8 @@ let activateElemets = function (bool) {
 activateElemets(true);
 
 // Активация страницы через нажатие левой кнопкой мыши
-let pageActivation = document.querySelector('.map__pin--main');
+const pageActivation = document.querySelector('.map__pin--main');
+const addForm = document.querySelector('.ad-form');
 
 pageActivation.addEventListener('mousedown', function (evt) {
   if (evt.buttons === 1) {
@@ -144,6 +145,7 @@ pageActivation.addEventListener('mousedown', function (evt) {
     map.classList.remove('map--faded');
     mapPins.append(insertPins());
     addAddress();
+    addForm.classList.remove('ad-form--disabled');
   }
 });
 
@@ -154,6 +156,7 @@ pageActivation.addEventListener('keydown', function (evt) {
     map.classList.remove('map--faded');
     mapPins.append(insertPins());
     addAddress(POINT_WIDTH_END, POINT_HEIGHT_END);
+    addForm.classList.remove('ad-form--disabled');
   }
 });
 
@@ -175,13 +178,17 @@ const addAddress = function (pWidthEnd, pHeightEnd) {
 addAddress(0, 0);
 
 // Связности количества гостей и количества комнат
-const housingGuests = document.querySelector('#housing-guests');
-const housingRooms = document.querySelector('#housing-rooms');
+const housingGuests = document.querySelector('#capacity');
+const housingRooms = document.querySelector('#room_number');
 
-housingRooms.addEventListener('change', function () {
-  const roomsAmount = housingRooms[housingRooms.selectedIndex].value;
+housingGuests.addEventListener('change', function (evt) {
   const guestsAmount = housingGuests[housingGuests.selectedIndex].value;
-  if (roomsAmount < guestsAmount) {
-    housingRooms.setCustomValidity('Столько гостей здесь не поместится');
+
+  for (let i = 0; i < housingRooms.length; i++) {
+    if ((guestsAmount > Number(housingRooms[i].value)) || guestsAmount == 0) {
+      housingRooms[i].setAttribute('disabled', 'true');
+    } else {
+      housingRooms[i].removeAttribute('disabled');
+    }
   }
 });
