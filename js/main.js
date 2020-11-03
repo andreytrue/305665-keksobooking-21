@@ -1,19 +1,19 @@
 'use strict';
 
 const users = [];
-let USERS_AMOUNT = 8;
+const USERS_AMOUNT = 8;
 let OFFER_TITLE = ['Я здесь живу', 'Срочно сдаю', 'Съеду на время', 'Жду вашего звонка'];
-let OFFER_PRICE_MIN = 200;
-let OFFER_PRICE_MAX = 1000;
-let OFFER_ADDRESS_MIN = 100;
-let OFFER_ADDRESS_MAX = 800;
+const OFFER_PRICE_MIN = 200;
+const OFFER_PRICE_MAX = 1000;
+const OFFER_ADDRESS_MIN = 100;
+const OFFER_ADDRESS_MAX = 800;
 let OFFER_TYPE = ['palace', 'flat', 'house', 'bungalow'];
 let OFFER_CHECK_IN_AND_OUT = ['12:00', '13:00', '14:00'];
 let OFFER_FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 let OFFER_DESCRIPTION = ['Заходи и живи', 'Новый азиатский ремонт', 'Чувствуйте себя как дома', 'Сдаю посуточно'];
 let OFFER_PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
-let LOCATION_Y_MIN = 130;
-let LOCATION_Y_MAX = 630;
+const LOCATION_Y_MIN = 130;
+const LOCATION_Y_MAX = 630;
 let AUTHOR_USED_AVATARS = [];
 
 // Task 1
