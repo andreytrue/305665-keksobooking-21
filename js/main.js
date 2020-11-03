@@ -182,10 +182,10 @@ const housingGuests = document.querySelector('#capacity');
 const housingRooms = document.querySelector('#room_number');
 
 housingGuests.addEventListener('change', function () {
-  const guestsAmount = housingGuests[housingGuests.selectedIndex].value;
+  const guestsAmount = Number(housingGuests[housingGuests.selectedIndex].value);
 
   for (let i = 0; i < housingRooms.length; i++) {
-    if ((guestsAmount > Number(housingRooms[i].value)) || guestsAmount === '0') {
+    if (guestsAmount > housingRooms[i].value || guestsAmount === 0) {
       housingRooms[i].setAttribute('disabled', 'true');
     } else {
       housingRooms[i].removeAttribute('disabled');
