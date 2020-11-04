@@ -110,25 +110,25 @@ const insertPins = function () {
 
 // 4.10
 
-let intercativeElements = document.querySelector('.ad-form');
-let mapFilters = document.querySelector('.map__filters');
-let intercativeForm = intercativeElements.querySelectorAll('fieldset');
-let mapForm = mapFilters.querySelectorAll('fieldset');
+const intercativeElements = document.querySelector('.ad-form');
+const mapFilters = document.querySelector('.map__filters');
+const intercativeForm = intercativeElements.querySelectorAll('fieldset');
+const mapForm = mapFilters.querySelectorAll('fieldset');
 
-let activateElemets = function (bool) {
-  if (bool) {
+const activateElemets = function (disable) {
+  if (disable) {
     for (let i = 0; i < intercativeForm.length; i++) {
-      intercativeForm[i].setAttribute('disabled', 'true');
+      intercativeForm[i].disabled = true;
     }
     for (let i = 0; i < mapForm.length; i++) {
-      mapForm[i].setAttribute('disabled', 'true');
+      mapForm[i].disabled = true;
     }
   } else {
     for (let i = 0; i < intercativeForm.length; i++) {
-      intercativeForm[i].removeAttribute('disabled');
+      intercativeForm[i].disabled = false;
     }
     for (let i = 0; i < mapForm.length; i++) {
-      mapForm[i].removeAttribute('disabled');
+      mapForm[i].disabled = false;
     }
   }
 };
