@@ -1,6 +1,21 @@
 'use strict';
 
 (function () {
+  let OFFER_TITLE = ['Я здесь живу', 'Срочно сдаю', 'Съеду на время', 'Жду вашего звонка'];
+  const OFFER_PRICE_MIN = 200;
+  const OFFER_PRICE_MAX = 1000;
+  const OFFER_ADDRESS_MIN = 100;
+  const OFFER_ADDRESS_MAX = 800;
+  let OFFER_TYPE = ['palace', 'flat', 'house', 'bungalow'];
+  let OFFER_CHECK_IN_AND_OUT = ['12:00', '13:00', '14:00'];
+  let OFFER_FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+  let OFFER_DESCRIPTION = ['Заходи и живи', 'Новый азиатский ремонт', 'Чувствуйте себя как дома', 'Сдаю посуточно'];
+  let OFFER_PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+  const LOCATION_Y_MIN = 130;
+  const LOCATION_Y_MAX = 630;
+  const USERS_AMOUNT = 8;
+  let AUTHOR_USED_AVATARS = [];
+
   // Создание случайного числа по минимальному и максимальному значению
   const randomNum = function (min, max) {
     let random = min - 0.5 + Math.random() * (max - min + 1);
@@ -22,34 +37,34 @@
     // Avatar creation
     const author = {};
 
-    author.avatar = 'img/avatars/user0' + getExclusiveNum(window.AUTHOR_USED_AVATARS) + '.png';
+    author.avatar = 'img/avatars/user0' + getExclusiveNum(AUTHOR_USED_AVATARS) + '.png';
     // Offer creation
     const offer = {};
-    offer.title = window.OFFER_TITLE[randomNum(0, window.OFFER_TITLE.length)];
-    offer.address = randomNum(window.OFFER_ADDRESS_MIN, window.OFFER_ADDRESS_MAX) + ', ' + randomNum(window.OFFER_ADDRESS_MIN, window.OFFER_ADDRESS_MAX);
-    offer.price = randomNum(window.OFFER_PRICE_MIN, window.OFFER_PRICE_MAX);
-    offer.type = window.OFFER_TYPE[randomNum(window.OFFER_TYPE.length)];
+    offer.title = OFFER_TITLE[randomNum(0, OFFER_TITLE.length)];
+    offer.address = randomNum(OFFER_ADDRESS_MIN, OFFER_ADDRESS_MAX) + ', ' + randomNum(OFFER_ADDRESS_MIN, OFFER_ADDRESS_MAX);
+    offer.price = randomNum(OFFER_PRICE_MIN, OFFER_PRICE_MAX);
+    offer.type = OFFER_TYPE[randomNum(OFFER_TYPE.length)];
     offer.rooms = randomNum(1, 6);
     offer.guests = randomNum(1, 8);
-    offer.checkin = window.OFFER_CHECK_IN_AND_OUT[randomNum(0, window.OFFER_CHECK_IN_AND_OUT.length)];
-    offer.checkout = window.OFFER_CHECK_IN_AND_OUT[randomNum(0, window.OFFER_CHECK_IN_AND_OUT.length)];
+    offer.checkin = OFFER_CHECK_IN_AND_OUT[randomNum(0, OFFER_CHECK_IN_AND_OUT.length)];
+    offer.checkout = OFFER_CHECK_IN_AND_OUT[randomNum(0, OFFER_CHECK_IN_AND_OUT.length)];
 
     offer.features = [];
-    for (let i = 0; i < randomNum(0, window.OFFER_FEATURES.length); i++) {
-      offer.features[i] = window.OFFER_FEATURES[i];
+    for (let i = 0; i < randomNum(0, OFFER_FEATURES.length); i++) {
+      offer.features[i] = OFFER_FEATURES[i];
     }
 
-    offer.description = window.OFFER_DESCRIPTION[randomNum(0, window.OFFER_DESCRIPTION.length)];
+    offer.description = OFFER_DESCRIPTION[randomNum(0, OFFER_DESCRIPTION.length)];
 
     offer.photos = [];
-    for (let i = 0; i < randomNum(0, window.OFFER_PHOTOS.length); i++) {
-      offer.photos[i] = window.OFFER_PHOTOS[i];
+    for (let i = 0; i < randomNum(0, OFFER_PHOTOS.length); i++) {
+      offer.photos[i] = OFFER_PHOTOS[i];
     }
 
     // Создание локации
     const location = {};
     location.x = randomNum(0, innerWidth);
-    location.y = randomNum(window.LOCATION_Y_MIN, window.LOCATION_Y_MAX);
+    location.y = randomNum(LOCATION_Y_MIN, LOCATION_Y_MAX);
 
     const obj = {
       author,
@@ -61,7 +76,7 @@
   };
 
   // Создание пользователей
-  for (let i = 0; i < window.USERS_AMOUNT; i++) {
+  for (let i = 0; i < USERS_AMOUNT; i++) {
     window.users.push(createUser());
   }
 })();
