@@ -2,9 +2,8 @@
 
 (function () {
 // Insert random pins
-  let mapPins = document.querySelector('.map__pins');
-  let pinTemplate = document.querySelector('#pin').content;
-  let newPinTemplate = pinTemplate.querySelector('.map__pin');
+  const pinTemplate = document.querySelector('#pin').content;
+  const newPinTemplate = pinTemplate.querySelector('.map__pin');
 
   window.pin = {
     insertPins: function () {
@@ -24,6 +23,4 @@
       return fragment;
     }
   };
-
-  window.mapPins = mapPins;
 })();

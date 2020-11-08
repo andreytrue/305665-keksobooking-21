@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  let users = [];
   let OFFER_TITLE = ['Я здесь живу', 'Срочно сдаю', 'Съеду на время', 'Жду вашего звонка'];
   const OFFER_PRICE_MIN = 200;
   const OFFER_PRICE_MAX = 1000;
@@ -14,69 +15,56 @@
   const LOCATION_Y_MIN = 130;
   const LOCATION_Y_MAX = 630;
   const USERS_AMOUNT = 8;
-  let AUTHOR_USED_AVATARS = [];
+  const AUTHOR_USED_AVATARS = [];
 
-  // Создание случайного числа по минимальному и максимальному значению
-  const randomNum = function (min, max) {
-    let random = min - 0.5 + Math.random() * (max - min + 1);
-    return Math.round(random);
-  };
+  window.data = {
+    createUser: function () {
+      // Avatar creation
+      const author = {};
 
-  const getExclusiveNum = function (arr) {
-    let currentNum = randomNum(1, 8);
+      author.avatar = 'img/avatars/user0' + window.util.getExclusiveNum(AUTHOR_USED_AVATARS) + '.png';
+      // Offer creation
+      const offer = {};
+      offer.title = OFFER_TITLE[window.util.randomNum(0, OFFER_TITLE.length)];
+      offer.address = window.util.randomNum(OFFER_ADDRESS_MIN, OFFER_ADDRESS_MAX) + ', ' + window.util.randomNum(OFFER_ADDRESS_MIN, OFFER_ADDRESS_MAX);
+      offer.price = window.util.randomNum(OFFER_PRICE_MIN, OFFER_PRICE_MAX);
+      offer.type = OFFER_TYPE[window.util.randomNum(OFFER_TYPE.length)];
+      offer.rooms = window.util.randomNum(1, 6);
+      offer.guests = window.util.randomNum(1, 8);
+      offer.checkin = OFFER_CHECK_IN_AND_OUT[window.util.randomNum(0, OFFER_CHECK_IN_AND_OUT.length)];
+      offer.checkout = OFFER_CHECK_IN_AND_OUT[window.util.randomNum(0, OFFER_CHECK_IN_AND_OUT.length)];
 
-    while (arr.includes(currentNum)) {
-      currentNum = randomNum(1, 8);
+      offer.features = [];
+      for (let i = 0; i < window.util.randomNum(0, OFFER_FEATURES.length); i++) {
+        offer.features[i] = OFFER_FEATURES[i];
+      }
+
+      offer.description = OFFER_DESCRIPTION[window.util.randomNum(0, OFFER_DESCRIPTION.length)];
+
+      offer.photos = [];
+      for (let i = 0; i < window.util.randomNum(0, OFFER_PHOTOS.length); i++) {
+        offer.photos[i] = OFFER_PHOTOS[i];
+      }
+
+      // Создание локации
+      const location = {};
+      location.x = window.util.randomNum(0, innerWidth);
+      location.y = window.util.randomNum(LOCATION_Y_MIN, LOCATION_Y_MAX);
+
+      const obj = {
+        author,
+        offer,
+        location
+      };
+
+      return obj;
     }
-
-    arr.push(currentNum);
-    return currentNum;
-  };
-
-  const createUser = function () {
-    // Avatar creation
-    const author = {};
-
-    author.avatar = 'img/avatars/user0' + getExclusiveNum(AUTHOR_USED_AVATARS) + '.png';
-    // Offer creation
-    const offer = {};
-    offer.title = OFFER_TITLE[randomNum(0, OFFER_TITLE.length)];
-    offer.address = randomNum(OFFER_ADDRESS_MIN, OFFER_ADDRESS_MAX) + ', ' + randomNum(OFFER_ADDRESS_MIN, OFFER_ADDRESS_MAX);
-    offer.price = randomNum(OFFER_PRICE_MIN, OFFER_PRICE_MAX);
-    offer.type = OFFER_TYPE[randomNum(OFFER_TYPE.length)];
-    offer.rooms = randomNum(1, 6);
-    offer.guests = randomNum(1, 8);
-    offer.checkin = OFFER_CHECK_IN_AND_OUT[randomNum(0, OFFER_CHECK_IN_AND_OUT.length)];
-    offer.checkout = OFFER_CHECK_IN_AND_OUT[randomNum(0, OFFER_CHECK_IN_AND_OUT.length)];
-
-    offer.features = [];
-    for (let i = 0; i < randomNum(0, OFFER_FEATURES.length); i++) {
-      offer.features[i] = OFFER_FEATURES[i];
-    }
-
-    offer.description = OFFER_DESCRIPTION[randomNum(0, OFFER_DESCRIPTION.length)];
-
-    offer.photos = [];
-    for (let i = 0; i < randomNum(0, OFFER_PHOTOS.length); i++) {
-      offer.photos[i] = OFFER_PHOTOS[i];
-    }
-
-    // Создание локации
-    const location = {};
-    location.x = randomNum(0, innerWidth);
-    location.y = randomNum(LOCATION_Y_MIN, LOCATION_Y_MAX);
-
-    const obj = {
-      author,
-      offer,
-      location
-    };
-
-    return obj;
   };
 
   // Создание пользователей
   for (let i = 0; i < USERS_AMOUNT; i++) {
-    window.users.push(createUser());
+    users.push(window.data.createUser());
   }
+
+  window.users = users;
 })();
