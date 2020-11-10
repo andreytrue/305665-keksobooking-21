@@ -4,13 +4,14 @@
 // Insert random pins
   const pinTemplate = document.querySelector('#pin').content;
   const newPinTemplate = pinTemplate.querySelector('.map__pin');
+  const USERS_AMOUNT = 8;
 
   window.pin = {
     insertPins: function () {
-      let fragment = new DocumentFragment();
+      const fragment = new DocumentFragment();
 
-      for (let i = 0; i < window.USERS_AMOUNT; i++) {
-        let pin = newPinTemplate.cloneNode(true);
+      for (let i = 0; i < USERS_AMOUNT; i++) {
+        const pin = newPinTemplate.cloneNode(true);
 
         pin.style = 'left:' + window.users[i].location.x + 'px; top: ' + window.users[i].location.y + 'px;';
         let picture = pin.querySelector('img');
