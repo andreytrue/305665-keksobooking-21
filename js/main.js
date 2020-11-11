@@ -52,4 +52,6 @@
       addForm.classList.remove('ad-form--disabled');
     }
   });
+
+  window.map = map;
 })();
