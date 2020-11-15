@@ -6,6 +6,8 @@
   const intercativeForm = intercativeElements.querySelectorAll('fieldset');
   const mapForm = mapFilters.querySelectorAll('fieldset');
   const map = document.querySelector('.map');
+  const filtersContainer = map.querySelector('.map__filters-container');
+  let pageIsAstive = false;
 
   const activateElemets = function (disable) {
     if (disable) {
@@ -18,9 +20,11 @@
     } else {
       for (let i = 0; i < intercativeForm.length; i++) {
         intercativeForm[i].disabled = false;
+        pageIsAstive = true;
       }
       for (let i = 0; i < mapForm.length; i++) {
         mapForm[i].disabled = false;
+        pageIsAstive = true;
       }
     }
   };
@@ -30,13 +34,13 @@
   // Активация страницы через нажатие левой кнопкой мыши
   const pageActivation = document.querySelector('.map__pin--main');
   const addForm = document.querySelector('.ad-form');
-  const mapPins = document.querySelector('.map__pins');
 
   pageActivation.addEventListener('mousedown', function (evt) {
     if (evt.buttons === 1) {
       activateElemets(false);
+      pageIsAstive = true;
       map.classList.remove('map--faded');
-      mapPins.append(window.pin.insertPins());
+      window.pin.renderPins(window.users);
       window.form.addAddress(window.POINT_WIDTH_END, window.POINT_HEIGHT_END);
       addForm.classList.remove('ad-form--disabled');
     }
@@ -46,12 +50,22 @@
   pageActivation.addEventListener('keydown', function (evt) {
     if (evt.key === 'Enter') {
       activateElemets(false);
+      pageIsAstive = true;
       map.classList.remove('map--faded');
-      mapPins.append(window.pin.insertPins());
+      window.pin.renderPins(window.users);
       window.form.addAddress(window.POINT_WIDTH_END, window.POINT_HEIGHT_END);
       addForm.classList.remove('ad-form--disabled');
     }
   });
 
+  const getActiveStatus = function () {
+    return pageIsAstive;
+  };
+
+  window.main = {
+    getActiveStatus: getActiveStatus
+  };
+
   window.map = map;
+  window.filtersContainer = filtersContainer;
 })();

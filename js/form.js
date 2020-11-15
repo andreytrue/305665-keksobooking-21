@@ -21,22 +21,6 @@
 
   window.form.addAddress(0, 0);
 
-  // Связности количества гостей и количества комнат
-  const housingGuests = document.querySelector('#capacity');
-  const housingRooms = document.querySelector('#room_number');
-
-  housingGuests.addEventListener('change', function () {
-    const guestsAmount = Number(housingGuests[housingGuests.selectedIndex].value);
-
-    for (let i = 0; i < housingRooms.length; i++) {
-      if (guestsAmount > housingRooms[i].value || guestsAmount === 0) {
-        housingRooms[i].setAttribute('disabled', 'true');
-      } else {
-        housingRooms[i].removeAttribute('disabled');
-      }
-    }
-  });
-
   window.POINT_WIDTH_END = POINT_WIDTH_END;
   window.POINT_HEIGHT_END = POINT_HEIGHT_END;
 })();
