@@ -51,24 +51,18 @@
   };
 
   const translateType = function (type) {
-    let translation = '';
-
     switch (type) {
       case 'flat':
-        translation = 'Квартира';
-        break;
+        return 'Квартира';
       case 'bungalow':
-        translation = 'Бунгало';
-        break;
+        return 'Бунгало';
       case 'house':
-        translation = 'Дом';
-        break;
+        return 'Дом';
       case 'palace':
-        translation = 'Дворец';
-        break;
+        return 'Дворец';
     }
 
-    return translation;
+    return type;
   };
 
   const onDocumentKeyDown = function (evt) {
