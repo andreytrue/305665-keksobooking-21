@@ -15,7 +15,7 @@
     card.querySelector('.popup__type').textContent = translateType(obj.offer.type);
     card.querySelector('.popup__text--capacity').textContent = obj.offer.rooms + ' комнаты для ' + obj.offer.guests + ' гостей';
     card.querySelector('.popup__text--time').textContent = 'Заезд после ' + obj.offer.checkin + ', выезд до ' + obj.offer.checkout;
-  
+
     const features = card.querySelector('.popup__features');
     features.textContent = '';
     for (let j = 0; j < obj.offer.features.length; j++) {
