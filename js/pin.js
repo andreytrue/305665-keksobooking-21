@@ -32,8 +32,16 @@
     mapPinsList.appendChild(fragment);
   };
 
+  const removePins = function () {
+    let list = mapPinsList.querySelectorAll(`.map__pin:not(.map__pin--main)`);
+    list.forEach((el) => {
+      el.remove();
+    });
+  };
+
   window.pin = {
-    renderPins: renderPins
+    renderPins: renderPins,
+    removePins: removePins
   };
 
   window.USERS_AMOUNT = USERS_AMOUNT;

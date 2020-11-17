@@ -11,12 +11,14 @@
   const pointPosition = document.querySelector('.map__pin');
   const onAddress = document.querySelector('#address');
 
+  const addAddress = function (pWidthEnd, pHeightEnd) {
+    const x = Number(pointPosition.style.left.replace(/px/g, ''));
+    const y = Number(pointPosition.style.top.replace(/px/g, ''));
+    onAddress.value = Math.floor(x + (POINT_WIDTH + pWidthEnd / 2)) + ', ' + Math.floor(y + POINT_HEIGHT + pHeightEnd);
+  };
+
   window.form = {
-    addAddress: function (pWidthEnd, pHeightEnd) {
-      const x = Number(pointPosition.style.left.replace(/px/g, ''));
-      const y = Number(pointPosition.style.top.replace(/px/g, ''));
-      onAddress.value = Math.floor(x + (POINT_WIDTH + pWidthEnd / 2)) + ', ' + Math.floor(y + POINT_HEIGHT + pHeightEnd);
-    }
+    addAddress: addAddress
   };
 
   window.form.addAddress(0, 0);

@@ -33,7 +33,7 @@
   const PLACE_MIN_PRICE_BUNGALO = 0;
   const PLACE_MIN_PRICE_FLAT = 1000;
   const PLACE_MIN_PRICE_HOUSE = 5000;
-  const PLACE_MIN_PLACE_PALACE = 10000;
+  const PLACE_MIN_PRICE_PALACE = 10000;
 
   // Зависимость поля placeholder цены от типа жилья
   const pricePlaceholder = function (placeType) {
@@ -42,7 +42,7 @@
     } else if (placeType.value === 'house') {
       price.placeholder = PLACE_MIN_PRICE_HOUSE;
     } else if (placeType.value === 'palace') {
-      price.placeholder = PLACE_MIN_PLACE_PALACE;
+      price.placeholder = PLACE_MIN_PRICE_PALACE;
     } else if (placeType.value === 'bungalow') {
       price.placeholder = PLACE_MIN_PRICE_BUNGALO;
     }
@@ -60,14 +60,14 @@
 
   // Зависимость минимальной цены за ночь от типа жилья
   const minPrice = function (placeType) {
-    const minValue = 0;
+    let minValue = 0;
 
     if (placeType === 'flat') {
       minValue = PLACE_MIN_PRICE_FLAT;
     } else if (placeType === 'house') {
       minValue = PLACE_MIN_PRICE_HOUSE;
     } else if (placeType === 'palace') {
-      minValue = PLACE_MIN_PLACE_PALACE;
+      minValue = PLACE_MIN_PRICE_PALACE;
     } else if (placeType === 'bungalo') {
       minValue = PLACE_MIN_PRICE_BUNGALO;
     }
@@ -153,5 +153,4 @@
   avatar.accept = 'image/png, image/jpeg';
   const images = adForm.querySelector('#images');
   images.accept = 'image/png, image/jpeg';
-
 })();

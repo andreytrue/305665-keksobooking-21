@@ -40,9 +40,10 @@
       activateElemets(false);
       pageIsAstive = true;
       map.classList.remove('map--faded');
-      window.pin.renderPins(window.users);
       window.form.addAddress(window.POINT_WIDTH_END, window.POINT_HEIGHT_END);
       addForm.classList.remove('ad-form--disabled');
+
+      window.load(onSuccess, onError);
     }
   });
 
@@ -52,14 +53,35 @@
       activateElemets(false);
       pageIsAstive = true;
       map.classList.remove('map--faded');
-      window.pin.renderPins(window.users);
       window.form.addAddress(window.POINT_WIDTH_END, window.POINT_HEIGHT_END);
       addForm.classList.remove('ad-form--disabled');
+
+      window.load(onSuccess, onError);
+      window.message.showSuccess();
     }
   });
 
+  const onSuccess = function (data) {
+    setData(data);
+    rerenderPins();
+  };
+
+  const onError = function (data) {
+    window.message.showError(data);
+  };
+
   const getActiveStatus = function () {
     return pageIsAstive;
+  };
+
+  const setData = function (data) {
+    window.users = data;
+  };
+
+  const rerenderPins = function () {
+    window.card.closeCard();
+    window.pin.removePins();
+    window.pin.renderPins(window.users);
   };
 
   window.main = {
@@ -68,4 +90,5 @@
 
   window.map = map;
   window.filtersContainer = filtersContainer;
+  window.intercativeElements = intercativeElements;
 })();

@@ -2,7 +2,7 @@
 
 (function () {
   let users = [];
-  let OFFER_TITLE = ['Я здесь живу', 'Срочно сдаю', 'Съеду на время', 'Жду вашего звонка'];
+  let OFFER_TITLES = ['Я здесь живу', 'Срочно сдаю', 'Съеду на время', 'Жду вашего звонка'];
   const OFFER_PRICE_MIN = 200;
   const OFFER_PRICE_MAX = 1000;
   const OFFER_ADDRESS_MIN = 100;
@@ -24,7 +24,7 @@
       author.avatar = 'img/avatars/user0' + window.util.getExclusiveNum(AUTHOR_USED_AVATARS) + '.png';
       // Offer creation
       const offer = {};
-      offer.title = OFFER_TITLE[window.util.randomNum(0, OFFER_TITLE.length - 1)];
+      offer.title = OFFER_TITLES[window.util.randomNum(0, OFFER_TITLES.length - 1)];
       offer.address = window.util.randomNum(OFFER_ADDRESS_MIN, OFFER_ADDRESS_MAX) + ', ' + window.util.randomNum(OFFER_ADDRESS_MIN, OFFER_ADDRESS_MAX);
       offer.price = window.util.randomNum(OFFER_PRICE_MIN, OFFER_PRICE_MAX);
       offer.type = OFFER_TYPE[window.util.randomNum(0, OFFER_TYPE.length - 1)];
@@ -59,11 +59,6 @@
       return obj;
     }
   };
-
-  // Создание пользователей
-  for (let i = 0; i < 8; i++) {
-    users.push(window.data.createUser());
-  }
 
   window.users = users;
 })();
